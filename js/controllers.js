@@ -12,7 +12,7 @@ angular.module('app.controllers', [])
 		},
 		function(error){
 			console.log(error);	
-			if(error.code == 1){
+			if(error.message == "User denied Geolocation"){
 				$state.go('details');
 			} else {
 				alert(error.message);
