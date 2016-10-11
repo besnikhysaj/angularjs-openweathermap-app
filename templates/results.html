@@ -1,0 +1,23 @@
+<div class="container">
+	<div class="row" ng-if="weather">
+		<div class="col-lg-2">
+			<div class="widget">
+				<img ng-src="{{icon}}" alt="">
+				<h3>{{temp | celciusdegree}}&deg;C</h3>
+			</div>
+		</div>
+		<div class="col-lg-10">
+			<h1>Weather for {{city}}</h1>
+			<p>{{condition}}</p>
+			<table class="table table-hover table-striped weather-table">
+				<tbody>
+					<tr ng-repeat="(key, value) in details">
+						<th>{{key | fixresult}}</th>
+						<td ng-if="key == 'temp' || key == 'temp_max' || key == 'temp_min'">{{value | celciusdegree}}&deg;C</td>
+						<td ng-if="key != 'temp' && key != 'temp_max' && key != 'temp_min'">{{value}}</td>
+					</tr>
+				</tbody>
+			</table>
+		</div>
+	</div>
+</div>

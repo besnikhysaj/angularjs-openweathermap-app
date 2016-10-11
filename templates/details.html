@@ -1,0 +1,20 @@
+<div class="container">
+	<div class="row">
+		<div class="col-lg-12">
+			<h1>Please enter postcode end country to get the weather data</h1>
+			<form ng-if="countries" ng-enter="sendData(weather)">
+				<div class="form-group">
+					<label for="postcode">Enter postcode</label>
+					<input id="postcode" type="number" class="form-control" placeholder="Postcode" ng-model="weather.postcode" required>
+				</div>
+				<div class="form-group">
+					<label for="country">Enter country</label>
+					<select id="country" class="form-control" ng-model="weather.country" required>
+						<option ng-repeat="country in countries" ng-value="country.code">{{country.name}}</option>
+					</select>
+				</div>
+				<button type="submit" class="btn btn-default" ng-click="sendData(weather)">Submit</button>
+			</form>
+		</div>
+	</div>
+</div>
