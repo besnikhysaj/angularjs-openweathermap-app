@@ -37,7 +37,7 @@ angular.module('app.controllers', [])
 	};
 
 }])
-.controller('ResultsCtrl', ["$scope", "$state", "Requests", function($scope, $state, Requests)
+.controller('ResultsCtrl', ["$scope", "$state", "Requests", "$animateCss", function($scope, $state, Requests, $animateCss)
 {
 	var type = $state.params.type,
 	param1 = $state.params.param1,
@@ -50,10 +50,28 @@ angular.module('app.controllers', [])
 	console.log(url);
 	Requests.getData(url).then(function(data){
 		$scope.weather = data;
-		$scope.icon = "http://openweathermap.org/img/w/" + data.weather[0].icon + ".png";
+		$scope.icon = "images/" + data.weather[0].icon + ".svg";
 		$scope.temp = data.main.temp;
 		$scope.city = data.name;
-		$scope.condition = data.weather[0].main + " (" + data.weather[0].description + ")";
+		$scope.condition = data.weather[0].description;
 		$scope.details = data.main;
 	});
+
+	Requests.getData("js/countries.json").then(function(data){
+		$scope.countries = data;
+	});
+
+	$scope.sendData = function(weather){
+		if(weather && weather.postcode && weather.country)
+		{
+			$state.go('results', {
+				type: "postcode",
+				param1: weather.postcode,
+				param2: weather.country
+			});
+		} else {
+			alert("Please fill all the required fields!");
+		}
+	};
+
 }]);

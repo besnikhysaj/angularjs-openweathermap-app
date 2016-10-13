@@ -1,23 +1,34 @@
-<div class="container">
-	<div class="row" ng-if="weather">
-		<div class="col-lg-2">
-			<div class="widget">
-				<img ng-src="{{icon}}" alt="">
-				<h3>{{temp | celciusdegree}}&deg;C</h3>
-			</div>
+<div class="weather">
+	<div class="widget">
+		<div class="left">
+			<img ng-src="{{icon}}" alt="">
+			<p>{{condition | capitalize}}</p>
 		</div>
-		<div class="col-lg-10">
-			<h1>Weather for {{city}}</h1>
-			<p>{{condition}}</p>
-			<table class="table table-hover table-striped weather-table">
-				<tbody>
-					<tr ng-repeat="(key, value) in details">
-						<th>{{key | fixresult}}</th>
-						<td ng-if="key == 'temp' || key == 'temp_max' || key == 'temp_min'">{{value | celciusdegree}}&deg;C</td>
-						<td ng-if="key != 'temp' && key != 'temp_max' && key != 'temp_min'">{{value}}</td>
-					</tr>
-				</tbody>
-			</table>
+		<div class="right">
+			<p>Weather for</p>
+			<h1>{{city}}</h1>
+			<h3>{{temp | celciusdegree}}&deg;</h3>			
 		</div>
 	</div>
+	<table class="table table-hover table-striped weather-table">
+		<tbody>
+			<tr ng-repeat="(key, value) in details">
+				<th>{{key | fixresult}}</th>
+				<td ng-if="key == 'temp' || key == 'temp_max' || key == 'temp_min'">{{value | celciusdegree}}&deg;C</td>
+				<td ng-if="key != 'temp' && key != 'temp_max' && key != 'temp_min'">{{value}}</td>
+			</tr>
+		</tbody>
+	</table>
+<!-- 	<div class="form">
+		<h1>Please enter postcode end country to get the weather data</h1>
+		<form ng-if="countries" ng-enter="sendData(weather)">
+			<label for="postcode">Postcode</label>
+			<input id="postcode" type="number" class="form-control" ng-model="weather.postcode" required>
+			<label for="country">Country</label>
+			<select id="country" class="form-control" ng-model="weather.country" required>
+				<option ng-repeat="country in countries" ng-value="country.code">{{country.name}}</option>
+			</select>
+			<button type="submit" class="btn btn-default" ng-click="sendData(weather)">Submit</button>
+		</form>
+	</div> -->
 </div>
