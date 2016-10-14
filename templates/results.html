@@ -1,34 +1,43 @@
 <div class="weather">
-	<div class="widget">
-		<div class="left">
-			<img ng-src="{{icon}}" alt="">
-			<p>{{condition | capitalize}}</p>
+	<div class="weather-wrapper">
+		<div class="loader" ng-show="!hasdata && loader">
+			<div class="uil-default-css" style='transform:scale(0.3);'><div style='top:80px;left:93px;width:14px;height:40px;background:#ffb819;-webkit-transform:rotate(0deg) translate(0,-60px);transform:rotate(0deg) translate(0,-60px);border-radius:10px;position:absolute;'></div><div style='top:80px;left:93px;width:14px;height:40px;background:#ffb819;-webkit-transform:rotate(30deg) translate(0,-60px);transform:rotate(30deg) translate(0,-60px);border-radius:10px;position:absolute;'></div><div style='top:80px;left:93px;width:14px;height:40px;background:#ffb819;-webkit-transform:rotate(60deg) translate(0,-60px);transform:rotate(60deg) translate(0,-60px);border-radius:10px;position:absolute;'></div><div style='top:80px;left:93px;width:14px;height:40px;background:#ffb819;-webkit-transform:rotate(90deg) translate(0,-60px);transform:rotate(90deg) translate(0,-60px);border-radius:10px;position:absolute;'></div><div style='top:80px;left:93px;width:14px;height:40px;background:#ffb819;-webkit-transform:rotate(120deg) translate(0,-60px);transform:rotate(120deg) translate(0,-60px);border-radius:10px;position:absolute;'></div><div style='top:80px;left:93px;width:14px;height:40px;background:#ffb819;-webkit-transform:rotate(150deg) translate(0,-60px);transform:rotate(150deg) translate(0,-60px);border-radius:10px;position:absolute;'></div><div style='top:80px;left:93px;width:14px;height:40px;background:#ffb819;-webkit-transform:rotate(180deg) translate(0,-60px);transform:rotate(180deg) translate(0,-60px);border-radius:10px;position:absolute;'></div><div style='top:80px;left:93px;width:14px;height:40px;background:#ffb819;-webkit-transform:rotate(210deg) translate(0,-60px);transform:rotate(210deg) translate(0,-60px);border-radius:10px;position:absolute;'></div><div style='top:80px;left:93px;width:14px;height:40px;background:#ffb819;-webkit-transform:rotate(240deg) translate(0,-60px);transform:rotate(240deg) translate(0,-60px);border-radius:10px;position:absolute;'></div><div style='top:80px;left:93px;width:14px;height:40px;background:#ffb819;-webkit-transform:rotate(270deg) translate(0,-60px);transform:rotate(270deg) translate(0,-60px);border-radius:10px;position:absolute;'></div><div style='top:80px;left:93px;width:14px;height:40px;background:#ffb819;-webkit-transform:rotate(300deg) translate(0,-60px);transform:rotate(300deg) translate(0,-60px);border-radius:10px;position:absolute;'></div><div style='top:80px;left:93px;width:14px;height:40px;background:#ffb819;-webkit-transform:rotate(330deg) translate(0,-60px);transform:rotate(330deg) translate(0,-60px);border-radius:10px;position:absolute;'></div></div>
 		</div>
-		<div class="right">
-			<p>Weather for</p>
-			<h1>{{city}}</h1>
-			<h3>{{temp | celciusdegree}}&deg;</h3>			
+
+		<div class="results" ng-show="hasdata">
+			<div class="widget">
+				<div class="left">
+					<img ng-src="{{icon}}" alt="">
+					<p>{{condition | capitalize}}</p>
+				</div>
+				<div class="right">
+					<p>Weather for</p>
+					<h1>{{city}}</h1>
+					<h3>{{temp | celciusdegree}}&deg;</h3>			
+				</div>
+			</div>
+			<table class="table table-hover table-striped weather-table">
+				<tbody>
+					<tr ng-repeat="(key, value) in details">
+						<th>{{key | fixresult}}</th>
+						<td ng-if="key == 'temp' || key == 'temp_max' || key == 'temp_min'">{{value | celciusdegree}}&deg;C</td>
+						<td ng-if="key != 'temp' && key != 'temp_max' && key != 'temp_min'">{{value}}</td>
+					</tr>
+				</tbody>
+			</table>
+		</div>
+
+		<div class="form" ng-show="!geo && !hasdata && countries">
+			<h1>Please enter postcode & country to get current weather</h1>
+			<form ng-enter="sendData(weather)">
+				<label for="postcode">Postcode</label>
+				<input id="postcode" type="number" class="form-control" ng-model="weather.postcode" required>
+				<label for="country">Country</label>
+				<select id="country" class="form-control" ng-model="weather.country" required>
+					<option ng-repeat="country in countries" ng-value="country.code">{{country.name}}</option>
+				</select>
+				<button type="submit" class="btn btn-default" ng-click="sendData(weather)">Submit</button>
+			</form>
 		</div>
 	</div>
-	<table class="table table-hover table-striped weather-table">
-		<tbody>
-			<tr ng-repeat="(key, value) in details">
-				<th>{{key | fixresult}}</th>
-				<td ng-if="key == 'temp' || key == 'temp_max' || key == 'temp_min'">{{value | celciusdegree}}&deg;C</td>
-				<td ng-if="key != 'temp' && key != 'temp_max' && key != 'temp_min'">{{value}}</td>
-			</tr>
-		</tbody>
-	</table>
-<!-- 	<div class="form">
-		<h1>Please enter postcode end country to get the weather data</h1>
-		<form ng-if="countries" ng-enter="sendData(weather)">
-			<label for="postcode">Postcode</label>
-			<input id="postcode" type="number" class="form-control" ng-model="weather.postcode" required>
-			<label for="country">Country</label>
-			<select id="country" class="form-control" ng-model="weather.country" required>
-				<option ng-repeat="country in countries" ng-value="country.code">{{country.name}}</option>
-			</select>
-			<button type="submit" class="btn btn-default" ng-click="sendData(weather)">Submit</button>
-		</form>
-	</div> -->
 </div>
