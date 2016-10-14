@@ -39,7 +39,6 @@ td { text-align: right; }
 .results.ng-hide{opacity: 0;right: -700px;}
 .results.ng-hide-add, .results.ng-hide-remove {-webkit-transition: all linear 0.5s;-moz-transition: all linear 0.5s;transition: all linear 0.5s;-webkit-transition-delay: 0.5s;-moz-transition-delay: 0.5s;transition-delay: 0.5s;}
 
-
 /* Loading style */
 @-webkit-keyframes uil-default-anim { 0% { opacity: 1} 100% {opacity: 0} }
 @keyframes uil-default-anim { 0% { opacity: 1} 100% {opacity: 0} }
@@ -54,6 +53,17 @@ td { text-align: right; }
 .uil-default-css > div:nth-of-type(5){-webkit-animation: uil-default-anim 1s linear infinite;animation: uil-default-anim 1s linear infinite;-webkit-animation-delay: -0.16666666666666669s;animation-delay: -0.16666666666666669s;}.uil-default-css { position: relative;background:none;width:200px;height:200px;}.uil-default-css > div:nth-of-type(6){-webkit-animation: uil-default-anim 1s linear infinite;animation: uil-default-anim 1s linear infinite;-webkit-animation-delay: -0.08333333333333331s;animation-delay: -0.08333333333333331s;}.uil-default-css { position: relative;background:none;width:200px;height:200px;}.uil-default-css > div:nth-of-type(7){-webkit-animation: uil-default-anim 1s linear infinite;animation: uil-default-anim 1s linear infinite;-webkit-animation-delay: 0s;animation-delay: 0s;}.uil-default-css { position: relative;background:none;width:200px;height:200px;}.uil-default-css > div:nth-of-type(8){-webkit-animation: uil-default-anim 1s linear infinite;animation: uil-default-anim 1s linear infinite;-webkit-animation-delay: 0.08333333333333337s;animation-delay: 0.08333333333333337s;}.uil-default-css { position: relative;background:none;width:200px;height:200px;}.uil-default-css > div:nth-of-type(9){-webkit-animation: uil-default-anim 1s linear infinite;animation: uil-default-anim 1s linear infinite;-webkit-animation-delay: 0.16666666666666663s;animation-delay: 0.16666666666666663s;}.uil-default-css { position: relative;background:none;width:200px;height:200px;}.uil-default-css > div:nth-of-type(10){-webkit-animation: uil-default-anim 1s linear infinite;animation: uil-default-anim 1s linear infinite;-webkit-animation-delay: 0.25s;animation-delay: 0.25s;}.uil-default-css { position: relative;background:none;width:200px;height:200px;}.uil-default-css > div:nth-of-type(11){-webkit-animation: uil-default-anim 1s linear infinite;animation: uil-default-anim 1s linear infinite;-webkit-animation-delay: 0.33333333333333337s;animation-delay: 0.33333333333333337s;}.uil-default-css { position: relative;background:none;width:200px;height:200px;}.uil-default-css > div:nth-of-type(12){-webkit-animation: uil-default-anim 1s linear infinite;animation: uil-default-anim 1s linear infinite;-webkit-animation-delay: 0.41666666666666663s;animation-delay: 0.41666666666666663s;}
 .uil-default-css { position: relative;background:none;width:200px;height:200px;margin: 0 auto;}
 .loader{display: table-cell;vertical-align: middle;}
-@media all and (max-width:400px) {
-	.weather { width: calc(90% - 40px); margin: 30px 5%; position: static; }
+@media all and (max-width:500px) {
+	.weather { width: calc(100% - 40px); height: 100vh;margin: 0; padding-bottom: 0;position: static; }
+	.weather-wrapper{display:table;width: 100%; height: 100vh;}
 }
+@media all and (max-height: 450px) {
+	.weather { width: calc(100% - 40px); height: 100vh;margin: 0; padding-bottom: 0;position: static; }
+	.weather-wrapper{display:table;width: 100%; height: 100vh;}
+}
+
+
+
+
+
+
